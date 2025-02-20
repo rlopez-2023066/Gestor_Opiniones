@@ -1,0 +1,24 @@
+Inicio de Sesión y Perfil de Usuario
+
+Crear Cuenta ✔
+Iniciar Sesión ✔
+
+°Editar Perfil 
+Todos los atributos de Usuario ✔
+Actualizar Contraseña ❌
+
+
+|Publicaciones|
+Modelo ✔
+Controller ❌ (Actualizar, Eliminar Publicaciones Propias) ❌
+Routes ❌
+Validaciones ❌
+
+|Comentarios|
+Modelo ✔
+Controller ❌ (Actualizar, Eliminar Comentarios Propios) ❌
+Routes ❌
+Validaciones ❌
+
+
+
