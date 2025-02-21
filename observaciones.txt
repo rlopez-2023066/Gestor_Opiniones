@@ -10,15 +10,18 @@ Actualizar Contraseña ❌
 
 |Publicaciones|
 Modelo ✔
-Controller ❌ (Actualizar, Eliminar Publicaciones Propias) ❌
-Routes ❌
+Controller ❌ ( Crear ✅, Actualizar ✅, Eliminar✅ Publicaciones Propias ❌)
+Routes ✅
 Validaciones ❌
 
 |Comentarios|
 Modelo ✔
-Controller ❌ (Actualizar, Eliminar Comentarios Propios) ❌
+Controller ❌ ( Crear ✅, Actualizar ✅, Eliminar✅ Comentarios Propios ❌) 
 Routes ❌
 Validaciones ❌
 
-
-
+|Categoria|
+Modelo ✅
+Controller (Crear ✅)
+Routes ✅ (Solo Admin ❌)
+Validaciones ❌

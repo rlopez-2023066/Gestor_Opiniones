@@ -12,7 +12,13 @@ const commentSchema = Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: [true, 'User is required'],
-        } 
+        },
+        
+        publication: {
+            type: Schema.Types.ObjectId,
+            ref: 'Publication',
+            required: true
+        }
     }
 )
 

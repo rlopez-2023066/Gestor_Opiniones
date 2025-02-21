@@ -21,10 +21,10 @@ const publicationSchema = Schema (
             maxLength: [10000, 'Main text must be less than 10000 characters'],
         },
 
-        comment: {
+        comments: [{
             type: Schema.Types.ObjectId,
-            ref: 'Comment',
-        },
+            ref: 'Comment'
+        }],
 
         user: {
             type: Schema.Types.ObjectId,

@@ -7,6 +7,9 @@ import helmet from 'helmet' //Seguridad para HTTP
 import cors from 'cors' //Acceso al API
 import { limiter } from '../middlewares/rate.limit.js'
 import authRoutes from '../src/auth/auth.routes.js'
+import categoryRoutes from '../src/category/category.routes.js'
+import commentRoutes from '../src/coment/comment.routes.js'
+import publicationRoutes from '../src/publications/publications.routes.js'
 //Configuraciones de express
 const configs = (app)=> {
     app.use(express.json()) //Aceptar y enviar datos en JSON
@@ -19,6 +22,9 @@ const configs = (app)=> {
 
 const routes = (app)=> {
     app.use(authRoutes)
+    app.use('/category',categoryRoutes)
+    app.use('/comment', commentRoutes)
+    app.use('/publication', publicationRoutes)
 }
 
 //Ejecutamos el servidor
