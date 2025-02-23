@@ -1,0 +1,608 @@
+{
+	"info": {
+		"_postman_id": "e58e2056-c4c9-412f-a973-ea4a4e3fe7d4",
+		"name": "ManagerOpinions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956967"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Pablo",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Lopez",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "plopez",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "plopez@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Alfredo88917@",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody)\r",
+									"postman.setGlobalVariable('token',data.token)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userLogin",
+									"value": "rlopez",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "@dmin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "addCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Sports",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Content the mundial sport",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/category/addCategory",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"category",
+								"addCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listCategory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "limit",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "skip",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/category/listCategory",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"category",
+								"listCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Food",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "asdasdasd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/category/updateCategory/67ba8ad2801e1c2899f6fdf7",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"category",
+								"updateCategory",
+								"67ba8ad2801e1c2899f6fdf7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8891/category/deleteCategory/67ba8ad2801e1c2899f6fdf0",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"category",
+								"deleteCategory",
+								"67ba8ad2801e1c2899f6fdf0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "addComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "Si tienes razon hay que tener mucho cuidado slds",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/comment/addComment/67ba8c2a5db090ca8c6f3c20",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"comment",
+								"addComment",
+								"67ba8c2a5db090ca8c6f3c20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateComment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "NOOO AL COVID",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/comment/updateComment/67ba8aeb801e1c2899f6fdff",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"comment",
+								"updateComment",
+								"67ba8aeb801e1c2899f6fdff"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:8891/comment/deleteComment/67ba8aeb801e1c2899f6fdff",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"comment",
+								"deleteComment",
+								"67ba8aeb801e1c2899f6fdff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Publication",
+			"item": [
+				{
+					"name": "addPublication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "El COVID 19 ya regreso",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "67ba8ad2801e1c2899f6fdf7",
+									"type": "text"
+								},
+								{
+									"key": "mainText",
+									"value": "Cuidado con el Covid 19 puede ser una enfermedad horrible",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/publication/addPublication",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"publication",
+								"addPublication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePublication",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8891/publication/deletePublication/67ba8c2a5db090ca8c6f3c20",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"publication",
+								"deletePublication",
+								"67ba8c2a5db090ca8c6f3c20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePublication",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "HOLAq",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "67ba6d8b368efb7fd8e2864c",
+									"type": "text"
+								},
+								{
+									"key": "mainText",
+									"value": "HOLA",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/publication/updatePublication/67ba8ae2801e1c2899f6fdfb",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"publication",
+								"updatePublication",
+								"67ba8ae2801e1c2899f6fdfb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "userUpdate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Pablo",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "ppppp",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "ppppa",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jlopez@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/profile/updateUser/67ba8abb801e1c2899f6fdf1",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"profile",
+								"updateUser",
+								"67ba8abb801e1c2899f6fdf1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePass",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "oldPassword",
+									"value": "Alfredo88917@",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "Alfredo88917",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8891/profile/updatePassword",
+							"host": [
+								"localhost"
+							],
+							"port": "8891",
+							"path": [
+								"profile",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

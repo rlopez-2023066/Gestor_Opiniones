@@ -5,23 +5,24 @@ Iniciar Sesión ✔
 
 °Editar Perfil 
 Todos los atributos de Usuario ✔
-Actualizar Contraseña ❌
+Actualizar Contraseña ✅
 
 
 |Publicaciones|
 Modelo ✔
-Controller ❌ ( Crear ✅, Actualizar ✅, Eliminar✅ Publicaciones Propias ❌)
+Controller ✅ ( Crear ✅, Actualizar ✅, Eliminar✅ Publicaciones Propias ✔)
 Routes ✅
-Validaciones ❌
-
+Validaciones ✅
 |Comentarios|
 Modelo ✔
-Controller ❌ ( Crear ✅, Actualizar ✅, Eliminar✅ Comentarios Propios ❌) 
-Routes ❌
-Validaciones ❌
+Controller ✅ ( Crear ✅, Actualizar ✅, Eliminar✅ Comentarios Propios ✅) 
+Routes ✅
+Validaciones ✅
 
 |Categoria|
 Modelo ✅
 Controller (Crear ✅)
 Routes ✅ (Solo Admin ❌)
-Validaciones ❌
+Validaciones ✅
+
+Pendiente Asignar los roles =)

@@ -14,11 +14,7 @@ const commentSchema = Schema(
             required: [true, 'User is required'],
         },
         
-        publication: {
-            type: Schema.Types.ObjectId,
-            ref: 'Publication',
-            required: true
-        }
+        
     }
 )
 

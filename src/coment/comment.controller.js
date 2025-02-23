@@ -5,56 +5,81 @@ import Publication from '../publications/publications.model.js'
 
 //Agregar
 export const addComment = async (req, res) => {
-    const { publicationId } = req.params;
-    const data = req.body;
-    const id = req.user.uid
-
+    const { publicationId } = req.params 
+    const data = req.body 
+    const id = req.user.uid   
 
     try {
-
-        const publicationExists = await Publication.findById(publicationId);
-        if (!publicationExists) {
-        return res.status(404).json({
-        success: false,
-        message: 'Publication not found'
-            });
-        }
         
-        const comment = new Comment({
-            ...data,
-            publication: publicationId
-        });
-        comment.user = id
+        const publication = await Publication.findById(publicationId) 
+        if (!publication) {
+            return res.status(404).send({
+                success: false,
+                message: 'Publication not found'
+            }) 
+        }
 
-        await comment.save();
+        const comment = new Comment({
+            ...data,  
+            publication: publicationId,
+            user: id
+        }) 
+
+        await comment.save() 
 
         await Publication.findByIdAndUpdate(
             publicationId,
             { $push: { comments: comment._id } },
-            {new: true}
-        );
+            { new: true }
+        ) 
 
         return res.status(201).json({
             success: true,
-            message: 'Comentario adding successfully'
-        });
+            message: 'Comment adding successfully',
+            comment
+        })
 
     } catch (error) {
-        console.error(error);
+        console.error(error) 
         return res.status(500).json({
             success: false,
-            message: 'Error when adding comment'
-        });
+            message: 'Error adding Comment'
+        })
     }
 }
+
+
+
+
+
 
 //Actualizar
 export const updateComment = async(req, res) => {
     try{
         let {id} = req.params
         let data = req.body
+        const idC = req.user.uid   
+
         
 
+
+        const comment = await Comment.findById(id) 
+
+        if (!comment){
+            return res.status(404).send(
+                {
+                success: false,
+                message: 'Comment not found'
+                }
+            )
+        }
+
+        if(comment.user.toString() !== idC){
+            return res.status(404).send({
+                success: false,
+                message: `The comment doesn't belong to you`
+            }) 
+        }
 
         let updateComment = await Comment.findByIdAndUpdate(
             id,
@@ -94,8 +119,29 @@ export const updateComment = async(req, res) => {
 export const deleteComment = async (req, res) => {
     try{
         let {id} = req.params
-        let deletedComment = await Comment.findByIdAndDelete(id)
+        const idC = req.user.uid   
 
+        const comment = await Comment.findById(id)
+
+        if(!comment){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Comment not found'
+                }
+            )
+        }
+
+        if(comment.user.toString() !== idC){
+            return res.status(404).send({
+                success: false,
+                message: `The comment doesn't belong to you`
+            })
+        }
+
+
+        let deletedComment = await Comment.findByIdAndDelete(id)
+        
         if(!deletedComment) return res.status(404).send(
             {
                 success: false,
@@ -113,7 +159,7 @@ export const deleteComment = async (req, res) => {
 
         
     }catch(error){
-        console.error(error);
+        console.error(error) 
         return res.status(500).send(
             {
                 success: false,
@@ -124,3 +170,4 @@ export const deleteComment = async (req, res) => {
         
     }
 }
+

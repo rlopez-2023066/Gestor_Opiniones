@@ -11,7 +11,7 @@ import {
 
 const api = Router()
 
-api.post('/addComment/:id', validateJwt, addComment)
+api.post('/addComment/:publicationId', validateJwt, addComment)
 api.put('/updateComment/:id', validateJwt, updateComment)
 api.delete('/deleteComment/:id', validateJwt, deleteComment)
 

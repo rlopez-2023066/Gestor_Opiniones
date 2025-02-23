@@ -1,5 +1,6 @@
 import Publication from '../publications/publications.model.js'
 import Category from '../category/category.model.js'
+import Comment from '../coment/comment.model.js'
 
 //Crear Publicacion
 export const addPublication = async(req , res) => {
@@ -50,7 +51,32 @@ export const updatePublication = async (req, res) => {
     try{
         let {id} = req.params
         let data = req.body
+        const idC = req.user.uid
+
         
+
+        
+        const publication = await Publication.findById(id)
+
+        if(!publication){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Publication not found'
+                }
+            )
+        }
+           
+        if(publication.user.toString() !== idC){
+            return res.status(404).send(
+                {
+                    success: 'false',
+                    message: `The Publication doesn't belong to you`
+                }
+            )
+        } 
+
+
         let updatedPublication = await Publication.findByIdAndUpdate(
             id,
             data,
@@ -60,7 +86,7 @@ export const updatePublication = async (req, res) => {
         if(!updatedPublication) return res.status(404).send(
             {
                 success: false,
-                message: 'Publicacion not found and not updated'
+                message: 'Publication not found and not updated'
             }
         )
 
@@ -89,7 +115,31 @@ export const updatePublication = async (req, res) => {
 export const deletePublication = async(req, res) => {
     try{
         let {id} = req.params
+        const idC = req.user.uid
+
+        const publication = await Publication.findById(id)
+
+        if(!publication){
+            return res.status(404).send(
+                {
+                    success: false,
+                    message: 'Publication not found'
+                }
+            )
+        }
+
+        if(publication.user.toString() !== idC){
+            return res.status(404).send(
+                {
+                    success: 'false',
+                    message: `The Publication doesn't belong to you`
+                }
+            )
+        } 
+
+        
         let deletedPublication = await Publication.findByIdAndDelete(id)
+
         if(!deletedPublication) return res.status(404).send(
             {
                 success: false,
@@ -116,3 +166,5 @@ export const deletePublication = async(req, res) => {
         
     }
 }
+
+
