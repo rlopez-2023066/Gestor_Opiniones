@@ -22,7 +22,7 @@ Validaciones ✅
 |Categoria|
 Modelo ✅
 Controller (Crear ✅)
-Routes ✅ (Solo Admin ❌)
+Routes ✅ (Solo Admin ✅)
 Validaciones ✅
 
 Pendiente Asignar los roles =)
